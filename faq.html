@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script> 
+
+function moveit(id) {
+	var fish = $(id)[0];
+
+	var newTop = fish.style.top;
+	var newLeft = fish.style.left;
+	if(fish.style.top == ""){
+		newTop = Math.floor(Math.random()*$(window).height()) + "px";
+		newLeft = Math.floor(Math.random()*$(window).width()) + "px";
+	}
+	
+	var direction1 = fish.className.split(" ")[1];
+	var direction2 = fish.className.split(" ")[2];
+	
+	//también checar si chocan con una orilla
+	if( Math.random() < 0.05) {
+		direction1 = Math.floor(Math.random()*3 - 0.0001) -1;
+		direction2 = Math.floor(Math.random()*3 - 0.0001) -1;
+		fish.className = "fish " + direction1 + " " + direction2;
+		
+		if(direction2 == 1 && !fish.src.includes("fliped")){
+			fish.src = fish.src.split(".jpg")[0] + "_fliped.jpg";
+		} else if ( fish.src.includes("fliped")) {
+			fish.src = fish.src.split("_fliped.jpg")[0] + ".jpg";
+		}
+	}
+	
+	newTop = newTop.replace("px" , "")*1 + direction1*1;
+	newLeft = newLeft.replace("px" , "")*1 + direction2*1;
+	
+	if(newTop < 30 ) newTop = 30;
+	if(newTop > $(window).height() -30 ) newTop = $(window).height() -30;
+	if(newLeft < 30 ) newLeft = 30;
+	if(newLeft > $(window).width() -30 ) newLeft = $(window).width() -30;
+	
+	$(id).animate({
+		top: newTop,
+		left: newLeft,
+	}, 50, function() {
+			moveit(id);
+	});
+}
+
+$(document).ready(function() {
+		var fishes = $('.fish');
+		for(var j = 0; j< fishes.length; j++){
+			var id = "#" + fishes[j].id;
+			moveit(id);
+		}
+	
+});
+</script> 
+<link rel="stylesheet" href="styles/layout.css" type="text/css">
+<style>
+	.fish{
+		position: absolute;
+	}
+	img{
+		width: 10%;
+		height: auto;
+	}
+	.new{
+		padding-top: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header id="header">
+			<a href="index.html">index</a>
+		</header>
+	</div>
+	<div class="wrapper row2">
+		<div id="mainContainer">
+			<!-- content body -->
+			<div id="contentContainer">
+				<div id="aboutMe">
+						<div class="new">
+							<h2>FAQ</h2>
+							<div class="new">
+								¿Por qué preguntas? hay juegos que todos tenemos guardando polvo en un estante
+								juegos por los que otras personas podrían estar interesadas pero no es fácil concretar
+								un intercambio. Por eso nace la pecera, para formar una especie de pool donde la gente
+								pueda cambiar algun juego polvoriento por uno que le guste de la picina.
+							</div>
+							<div class="new">
+								¿Cómo funciona?
+								Si ves un juego que te gusta en la pecera tomas uno de tus juegos polvorientos y lo cambias.
+								La unica restricción es que debe ser de mayor precio, incluso 1 centavo es suficiente.
+							</div>
+							<div class="new">
+								¿Por qué tiene que ser de mayor precio?
+								La finalidad principal de la pecera es promover el intercambio, no dejar juegos polvorientos.
+								Si dejamos que se cambie por cualquier juego la pecera acabara llena de mugrero.
+							</div>
+							<div class="new">
+								¿Si no tengo un juego más caro, puedo intercambiarlo por varios juegos que sumados sean más?
+								Claro
+							</div>
+							<div class="new">
+								¿Cuanto dinero estas ganando con esto?
+								Probablemente nada, no estoy aquí para ganar dinero, con suerte podre jugar muchos juegos
+								que a otras personas no les parezcan interesantes.
+							</div>
+							<div class="new">
+								¿Por qué usar el precio de amazon?
+								Es el lugar donde he podido encontrar la mayor cantidad de precio, es fácil de accesar
+								y verificar y todos pueden verlo.
+							</div>
+							<div class="new">
+								¿Algo más que debamos saber?
+								Not really, god speed my son.
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div>
+		<img id="formulaD" src="images/formulaD.jpg" class="fish 1 1" alt="">
+		<img id="libertalia" src="images/libertalia.jpg" class="fish 0 0" alt="">
+		<img id="smallworld" src="images/smallworld.jpg" class="fish 0 0" alt="">
+		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.jpg" class="fish 0 0" alt="">
+	</div>
+	<div>
+		
+	</div>
+	</body>
+</html>

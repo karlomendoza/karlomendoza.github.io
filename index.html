@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script> 
+function moveit(id) {
+	var fish = $(id)[0];
+
+	var newTop = fish.style.top;
+	var newLeft = fish.style.left;
+	if(fish.style.top == ""){
+		newTop = Math.floor(Math.random()*$(window).height()) + "px";
+		newLeft = Math.floor(Math.random()*$(window).width()) + "px";
+	}
+	
+	var direction1 = fish.className.split(" ")[1];
+	var direction2 = fish.className.split(" ")[2];
+	
+	//también checar si chocan con una orilla
+	if( Math.random() < 0.05) {
+		direction1 = Math.floor(Math.random()*3 - 0.0001) -1;
+		direction2 = Math.floor(Math.random()*3 - 0.0001) -1;
+		fish.className = "fish " + direction1 + " " + direction2;
+		
+		if(direction2 == 1 && !fish.src.includes("fliped")){
+			fish.src = fish.src.split(".jpg")[0] + "_fliped.jpg";
+		} else if ( fish.src.includes("fliped")) {
+			fish.src = fish.src.split("_fliped.jpg")[0] + ".jpg";
+		}
+	}
+	
+	newTop = newTop.replace("px" , "")*1 + direction1*1;
+	newLeft = newLeft.replace("px" , "")*1 + direction2*1;
+	
+	if(newTop < 30 ) newTop = 30;
+	if(newTop > $(window).height() -30 ) newTop = $(window).height() -30;
+	if(newLeft < 30 ) newLeft = 30;
+	if(newLeft > $(window).width() -30 ) newLeft = $(window).width() -30;
+	
+	$(id).animate({
+		top: newTop,
+		left: newLeft,
+	}, 50, function() {
+			moveit(id);
+	});
+}
+
+$(document).ready(function() {
+		var fishes = $('.fish');
+		for(var j = 0; j< fishes.length; j++){
+			var id = "#" + fishes[j].id;
+			moveit(id);
+		}
+	
+});
+
+
+function toggle(id) {
+	$(id).toggle();
+}
+
+</script> 
+<link rel="stylesheet" href="styles/layout.css" type="text/css">
+<style>
+	.fish{
+		position: absolute;
+	}
+	img{
+		width: 10%;
+		height: auto;
+	}
+	.new{
+		padding-top: 20px;
+	}
+	.new h2 {
+		color: blue;
+	}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header id="header">
+			<a href="faq.html">FAQ</a>
+		</header>
+	</div>
+	<div class="wrapper row2">
+		<div id="mainContainer">
+			<!-- content body -->
+			<aside id="left_column">
+				<nav>
+					<div>
+					  ¿Cómo funciona la pecera de juegos? Si te gusta alguno de los juegos lo cambias por otro que tengas
+					  que sea de un valor superior (amazon price) o puedes cambiarlo por varios juegos que sumen más.
+					</div>
+					<div>
+						Interesado? mandame un correo, o dejame un mensaje por facebook
+						karlo.mendoza@gmail.com
+						<a href="https://www.facebook.com/2ndz4a5t54g54g45tgr5trtygl45gh5k0cxxssdsdsds.f" target="_blank">
+							facebook
+						</a>
+					</div>
+					<div class="new" onclick="toggle('#container1')">
+						<h2>SmallWorld</h2>
+						<div id="container1">
+							Juego de guerra donde tus minions tienen caracteristicas elegidas al azar
+							<div>
+								<a href ="https://www.youtube.com/watch?v=6RQ9iI3ORig" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $32.99
+							</div>
+						</div>
+					</div>
+
+					<div class="new" onclick="toggle('#container2')">
+						<h2>libertalia</h2>
+						<div id="container2">
+							En Libertalia, debes frustrar los planes de los piratas competitivos durante el 
+							transcurso de tres rondas mientras usas cartas que muestran a los mismos miembros 
+							de la tripulación que tus piratas compañeros de armas. Sí, no sólo atacan a los 
+							mismos barcos, sino que emplean el mismo tipo de escoria voraz que tu! 
+							¿Puedes aprovechar los poderes de tus personajes en el momento adecuado? 
+							¿Serás superado por un pirata más listo que tú? ¡Salta al agua y prueba tus 
+							habilidades tácticas!
+							<div>
+								<a href ="https://i.ytimg.com/vi/cdGQ4npIzfI/hqdefault.jpg?custom=true&w=246&h=138&stc=true&jpg444=true&jpgq=90&sp=68&sigh=HWAQ_elLug9Yk2fD36D9hPn6FqM" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $36.18
+							</div>
+						</div>
+					</div>
+
+					<div class="new" onclick="toggle('#container3')">
+						<h2>Formula D</h2>
+						<div id="container3">
+							Formula D es un juego de carreras de alto nivel de Fórmula Uno donde los 
+							jugadores compiten con coches de carrera con la esperanza de cruzar la línea 
+							de meta primero.
+							<div>
+								<a href ="https://www.youtube.com/watch?v=iSYEoP0j63c" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $59.99
+							</div>
+						</div>
+					</div>
+					
+					<div class="new" onclick="toggle('#container3')">
+						<h2>The castles of burgundy</h2>
+						<div id="container3">
+							El juego se establece en la región de Borgoña de la Francia Alta Medieval. 
+							Cada jugador asume el papel de un aristócrata, controlando inicialmente un pequeño principado. 
+							Mientras juegan, construyen asentamientos y poderosos castillos, 
+							practicar el comercio a lo largo del río, 
+							explotar las minas de plata y utilizar el conocimiento de los viajeros.
+							<div>
+								<a href ="https://www.youtube.com/watch?v=kpBO5GOcXe8" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $25.99
+							</div>
+						</div>
+					</div>
+				</nav>
+			</aside>
+		</div>
+	</div>
+	<div>
+		<img id="formulaD" src="images/formulaD.jpg" class="fish 1 1" alt="">
+		<img id="libertalia" src="images/libertalia.jpg" class="fish 0 0" alt="">
+		<img id="smallworld" src="images/smallworld.jpg" class="fish 0 0" alt="">
+		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.jpg" class="fish 0 0" alt="">
+	</div>
+	<div>
+		
+	</div>
+	</body>
+</html>
