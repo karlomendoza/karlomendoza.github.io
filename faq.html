@@ -4,6 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script> 
 
+var movementRate = 1;
 function moveit(id) {
 	var fish = $(id)[0];
 
@@ -24,19 +25,19 @@ function moveit(id) {
 		fish.className = "fish " + direction1 + " " + direction2;
 		
 		if(direction2 == 1 && !fish.src.includes("fliped")){
-			fish.src = fish.src.split(".jpg")[0] + "_fliped.jpg";
+			fish.src = fish.src.split(".png")[0] + "_fliped.png";
 		} else if ( fish.src.includes("fliped")) {
-			fish.src = fish.src.split("_fliped.jpg")[0] + ".jpg";
+			fish.src = fish.src.split("_fliped.png")[0] + ".png";
 		}
 	}
 	
-	newTop = newTop.replace("px" , "")*1 + direction1*1;
-	newLeft = newLeft.replace("px" , "")*1 + direction2*1;
+	newTop = newTop.replace("px" , "")*movementRate + direction1*1;
+	newLeft = newLeft.replace("px" , "")*movementRate + direction2*1;
 	
 	if(newTop < 30 ) newTop = 30;
-	if(newTop > $(window).height() -30 ) newTop = $(window).height() -30;
+	if(newTop > $(window).height() -100 ) newTop = $(window).height() -100;
 	if(newLeft < 30 ) newLeft = 30;
-	if(newLeft > $(window).width() -30 ) newLeft = $(window).width() -30;
+	if(newLeft > $(window).width() -230 ) newLeft = $(window).width() -230;
 	
 	$(id).animate({
 		top: newTop,
@@ -54,6 +55,11 @@ $(document).ready(function() {
 		}
 	
 });
+
+
+function toggle(id) {
+	$(id).toggle();
+}
 </script> 
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
 <style>
@@ -122,10 +128,13 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<div>
-		<img id="formulaD" src="images/formulaD.jpg" class="fish 1 1" alt="">
-		<img id="libertalia" src="images/libertalia.jpg" class="fish 0 0" alt="">
-		<img id="smallworld" src="images/smallworld.jpg" class="fish 0 0" alt="">
-		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.jpg" class="fish 0 0" alt="">
+		<img id="formulaD" src="images/formulaD.png" class="fish 1 1" alt="">
+		<img id="libertalia" src="images/libertalia.png" class="fish 0 0" alt="">
+		<img id="smallworld" src="images/smallworld.png" class="fish 0 0" alt="">
+		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.png" class="fish 0 0" alt="">
+		<img id="jungleSpeed" src="images/jungleSpeed.png" class="fish 0 0" alt="">
+		<img id="rivalsForCatan" src="images/rivalsForCatan.png" class="fish 0 0" alt="">
+		<img id="robinsonCrusoe" src="images/robinsonCrusoe.png" class="fish 0 0" alt="">
 	</div>
 	<div>
 		

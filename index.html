@@ -3,6 +3,8 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script> 
+
+var movementRate = 1;
 function moveit(id) {
 	var fish = $(id)[0];
 
@@ -23,19 +25,19 @@ function moveit(id) {
 		fish.className = "fish " + direction1 + " " + direction2;
 		
 		if(direction2 == 1 && !fish.src.includes("fliped")){
-			fish.src = fish.src.split(".jpg")[0] + "_fliped.jpg";
+			fish.src = fish.src.split(".png")[0] + "_fliped.png";
 		} else if ( fish.src.includes("fliped")) {
-			fish.src = fish.src.split("_fliped.jpg")[0] + ".jpg";
+			fish.src = fish.src.split("_fliped.png")[0] + ".png";
 		}
 	}
 	
-	newTop = newTop.replace("px" , "")*1 + direction1*1;
-	newLeft = newLeft.replace("px" , "")*1 + direction2*1;
+	newTop = newTop.replace("px" , "")*movementRate + direction1*1;
+	newLeft = newLeft.replace("px" , "")*movementRate + direction2*1;
 	
 	if(newTop < 30 ) newTop = 30;
-	if(newTop > $(window).height() -30 ) newTop = $(window).height() -30;
+	if(newTop > $(window).height() -100 ) newTop = $(window).height() -100;
 	if(newLeft < 30 ) newLeft = 30;
-	if(newLeft > $(window).width() -30 ) newLeft = $(window).width() -30;
+	if(newLeft > $(window).width() -230 ) newLeft = $(window).width() -230;
 	
 	$(id).animate({
 		top: newTop,
@@ -58,6 +60,15 @@ $(document).ready(function() {
 function toggle(id) {
 	$(id).toggle();
 }
+$(document).ready(function() {
+toggle('#container1');
+toggle('#container2');
+toggle('#container3');
+toggle('#container4');
+toggle('#container5');
+toggle('#container6');
+toggle('#container7');
+});
 
 </script> 
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
@@ -100,7 +111,7 @@ function toggle(id) {
 						</a>
 					</div>
 					<div class="new" onclick="toggle('#container1')">
-						<h2>SmallWorld</h2>
+						<h2>SmallWorld</h2> (more)
 						<div id="container1">
 							Juego de guerra donde tus minions tienen caracteristicas elegidas al azar
 							<div>
@@ -113,7 +124,7 @@ function toggle(id) {
 					</div>
 
 					<div class="new" onclick="toggle('#container2')">
-						<h2>libertalia</h2>
+						<h2>libertalia</h2> (more)
 						<div id="container2">
 							En Libertalia, debes frustrar los planes de los piratas competitivos durante el 
 							transcurso de tres rondas mientras usas cartas que muestran a los mismos miembros 
@@ -132,7 +143,7 @@ function toggle(id) {
 					</div>
 
 					<div class="new" onclick="toggle('#container3')">
-						<h2>Formula D</h2>
+						<h2>Formula D</h2> (more)
 						<div id="container3">
 							Formula D es un juego de carreras de alto nivel de Fórmula Uno donde los 
 							jugadores compiten con coches de carrera con la esperanza de cruzar la línea 
@@ -146,9 +157,9 @@ function toggle(id) {
 						</div>
 					</div>
 					
-					<div class="new" onclick="toggle('#container3')">
-						<h2>The castles of burgundy</h2>
-						<div id="container3">
+					<div class="new" onclick="toggle('#container4')">
+						<h2>The castles of burgundy</h2> (more)
+						<div id="container4">
 							El juego se establece en la región de Borgoña de la Francia Alta Medieval. 
 							Cada jugador asume el papel de un aristócrata, controlando inicialmente un pequeño principado. 
 							Mientras juegan, construyen asentamientos y poderosos castillos, 
@@ -162,15 +173,84 @@ function toggle(id) {
 							</div>
 						</div>
 					</div>
+					
+					
+					<div class="new" onclick="toggle('#container5')">
+						<h2>Jungle speed</h2> (more)
+						<div id="container5">
+							En Jungle Speed, debes confiar en tu agudo sentido de la observación y en los rápidos reflejos. 
+							Se requiere una mano firme - que puede ser difícil de mantener durante los muchos ataques de 
+							la risa maníaca! El totem de madera se sienta en medio de la mesa, esperando al jugador con 
+							los reflejos más rápidos para arrebatarlo y ganar el juego.
+
+							Cada jugador recibe una mano de cartas. Con el fin de ganar debe ser el primer jugador para 
+							deshacerse de todas sus cartas. Cada turno, todos los jugadores revelan una de 
+							sus cartas. Si dos cartas son idénticas, esos jugadores deben agarrar el Totem. 
+							El jugador más rápido entonces da sus cartas a su desafortunado adversario.
+							<div>
+								<a href ="https://www.youtube.com/watch?v=g2uSeOSQHV8" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $29.99
+							</div>
+						</div>
+					</div>
+					<div class="new" onclick="toggle('#container6')">
+						<h2>The Rivals for Catan</h2> (more)
+						<div id="container6">
+							Cada jugador retrata a un príncipe de Catan, desarrollando sus provincias individuales y 
+							compitiendo para construir una provincia más exitosa que la otra. El modo básico de 
+							juego es similar al juego de cartas original de Catan, donde los jugadores expanden 
+							sus provincias construyendo asentamientos conectados por caminos. 
+							Los jugadores también pueden construir expansiones en sus asentamientos que les ayuden 
+							de varias maneras, o actualizar sus asentamientos a las ciudades para permitir que se 
+							construyan más expansiones. Ellos construyen estas adiciones mediante el uso de los 
+							recursos que acumulan cada turno, que se determinan por el rollo de un dado. 
+							Las cartas se dibujan en cada turno para reponer las manos de los jugadores. 
+							Los jugadores también pueden usar cartas de acción que afectan directamente 
+							a su propia provincia oa la provincia de su oponente.
+							<div>
+								<a href ="https://www.youtube.com/watch?v=kDq_ElkMQHY" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $38.89
+							</div>
+						</div>
+					</div>
+					<div class="new" onclick="toggle('#container7')">
+						<h2>Robinson Crusoe: Adventures on the Cursed Island</h2> (more)
+						<div id="container7">
+							Robinson Crusoe: Adventures on the Cursed Island es un juego épico de Portal. 
+							Construirás un refugio, palisade, armas, crearás herramientas como hachas, cuchillos, 
+							sacos, harás todo lo que puedas para ... sobrevivir. Tendrás que encontrar comida, 
+							luchar contra las bestias salvajes, protegerte de los cambios climáticos ...
+
+							Toma el papel de uno de los cuatro personajes de la tripulación de la nave 
+							(cocinero, carpintero, explorador o soldado) y enfrentar la aventura. 
+							Utilice sus habilidades para ayudar a sus compañeros de equipo, 
+							discutir con ellos su plan y ponerlo en práctica. Debate, discuta y trabaje en el 
+							mejor plan que todos puedan hacer.
+							<div>
+								<a href ="https://www.youtube.com/watch?v=jAuNybsa72k" target="_blank">youtube</a>
+							</div>
+							<div>
+								SRP = $64.85
+							</div>
+						</div>
+					</div>
+					
 				</nav>
 			</aside>
 		</div>
 	</div>
 	<div>
-		<img id="formulaD" src="images/formulaD.jpg" class="fish 1 1" alt="">
-		<img id="libertalia" src="images/libertalia.jpg" class="fish 0 0" alt="">
-		<img id="smallworld" src="images/smallworld.jpg" class="fish 0 0" alt="">
-		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.jpg" class="fish 0 0" alt="">
+		<img id="formulaD" src="images/formulaD.png" class="fish 1 1" alt="">
+		<img id="libertalia" src="images/libertalia.png" class="fish 0 0" alt="">
+		<img id="smallworld" src="images/smallworld.png" class="fish 0 0" alt="">
+		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.png" class="fish 0 0" alt="">
+		<img id="jungleSpeed" src="images/jungleSpeed.png" class="fish 0 0" alt="">
+		<img id="rivalsForCatan" src="images/rivalsForCatan.png" class="fish 0 0" alt="">
+		<img id="robinsonCrusoe" src="images/robinsonCrusoe.png" class="fish 0 0" alt="">
 	</div>
 	<div>
 		
