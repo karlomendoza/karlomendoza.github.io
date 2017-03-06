@@ -2,74 +2,20 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/fishMovement.js"></script>
 <script> 
-
-var movementRate = 1;
-function moveit(id) {
-	var fish = $(id)[0];
-
-	var newTop = fish.style.top;
-	var newLeft = fish.style.left;
-	if(fish.style.top == ""){
-		newTop = Math.floor(Math.random()*$(window).height()) + "px";
-		newLeft = Math.floor(Math.random()*$(window).width()) + "px";
+	function toggle(id) {
+		$(id).toggle();
 	}
-	
-	var direction1 = fish.className.split(" ")[1];
-	var direction2 = fish.className.split(" ")[2];
-	
-	//también checar si chocan con una orilla
-	if( Math.random() < 0.05) {
-		direction1 = Math.floor(Math.random()*3 - 0.0001) -1;
-		direction2 = Math.floor(Math.random()*3 - 0.0001) -1;
-		fish.className = "fish " + direction1 + " " + direction2;
-		
-		if(direction2 == 1 && !fish.src.includes("fliped")){
-			fish.src = fish.src.split(".png")[0] + "_fliped.png";
-		} else if ( fish.src.includes("fliped")) {
-			fish.src = fish.src.split("_fliped.png")[0] + ".png";
-		}
-	}
-	
-	newTop = newTop.replace("px" , "")*movementRate + direction1*1;
-	newLeft = newLeft.replace("px" , "")*movementRate + direction2*1;
-	
-	if(newTop < 30 ) newTop = 30;
-	if(newTop > $(window).height() -100 ) newTop = $(window).height() -100;
-	if(newLeft < 30 ) newLeft = 30;
-	if(newLeft > $(window).width() -230 ) newLeft = $(window).width() -230;
-	
-	$(id).animate({
-		top: newTop,
-		left: newLeft,
-	}, 50, function() {
-			moveit(id);
+	$(document).ready(function() {
+	toggle('#container1');
+	toggle('#container2');
+	toggle('#container3');
+	toggle('#container4');
+	toggle('#container5');
+	toggle('#container6');
+	toggle('#container7');
 	});
-}
-
-$(document).ready(function() {
-		var fishes = $('.fish');
-		for(var j = 0; j< fishes.length; j++){
-			var id = "#" + fishes[j].id;
-			moveit(id);
-		}
-	
-});
-
-
-function toggle(id) {
-	$(id).toggle();
-}
-$(document).ready(function() {
-toggle('#container1');
-toggle('#container2');
-toggle('#container3');
-toggle('#container4');
-toggle('#container5');
-toggle('#container6');
-toggle('#container7');
-});
-
 </script> 
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
 <style>
@@ -244,16 +190,13 @@ toggle('#container7');
 		</div>
 	</div>
 	<div>
-		<img id="formulaD" src="images/formulaD.png" class="fish 1 1" alt="">
-		<img id="libertalia" src="images/libertalia.png" class="fish 0 0" alt="">
-		<img id="smallworld" src="images/smallworld.png" class="fish 0 0" alt="">
-		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.png" class="fish 0 0" alt="">
-		<img id="jungleSpeed" src="images/jungleSpeed.png" class="fish 0 0" alt="">
-		<img id="rivalsForCatan" src="images/rivalsForCatan.png" class="fish 0 0" alt="">
-		<img id="robinsonCrusoe" src="images/robinsonCrusoe.png" class="fish 0 0" alt="">
-	</div>
-	<div>
-		
+		<img id="formulaD" src="images/formulaD.png" class="fish 1 1 1" alt="">
+		<img id="libertalia" src="images/libertalia.png" class="fish 0 0 0" alt="">
+		<img id="smallworld" src="images/smallworld.png" class="fish 0 0 0" alt="">
+		<img id="castlesOfBurgundy" src="images/castlesOfBurgundy.png" class="fish 0 0 0" alt="">
+		<img id="jungleSpeed" src="images/jungleSpeed.png" class="fish 0 0 0" alt="">
+		<img id="rivalsForCatan" src="images/rivalsForCatan.png" class="fish 0 0 0" alt="">
+		<img id="robinsonCrusoe" src="images/robinsonCrusoe.png" class="fish 0 0 0" alt="">
 	</div>
 	</body>
 </html>
