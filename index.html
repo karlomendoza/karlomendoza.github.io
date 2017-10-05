@@ -16,7 +16,25 @@
 	toggle('#container6');
 	toggle('#container7');
 	});
-</script> 
+</script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'hello': function() {
+		alert('alo');
+      //window.close();
+    }
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
+</script>
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
 <style>
 	.fish{
