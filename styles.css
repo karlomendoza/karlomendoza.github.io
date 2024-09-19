@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#guess-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.marble {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.red { background-color: red; }
+.blue { background-color: blue; }
+.green { background-color: green; }
+.yellow { background-color: yellow; }
+.orange { background-color: orange; }
+.purple { background-color: purple; }
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+#history {
+    margin-top: 20px;
+    display: flex;              /* Flex container for side-by-side layout */
+    justify-content: center;
+    flex-wrap: wrap;            /* Allow wrapping to a new line if needed */
+    gap: 20px;                  /* Space between guess blocks */
+}
+
+.history-row {
+    display: flex;
+    flex-direction: column;     /* Guess and feedback will stack vertically */
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.feedback {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
