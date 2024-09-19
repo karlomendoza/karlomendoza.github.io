@@ -1,0 +1,154 @@
+New! Keyboard shortcuts … Drive keyboard shortcuts have been updated to give you first-letters navigation
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 150px);
+            grid-gap: 10px;
+            justify-content: center;
+        }
+        .card {
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: transparent;
+        }
+        .card img {
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+        }
+        .card.flipped img {
+            display: block;
+        }
+        .card.flipped {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Juego de Memorama</h1>
+
+    
+
+
+    <div style="display:none; id="solution">
+        Vaya vaya, así que eres más lista de lo que pensaba
+        </br>
+        presiona el siguiente link para ir a tu próximo reto.
+        </br>
+        <button onclick="window.open('https://www.youtube.com/watch?v=XBkzBrXlle0','_blank');showDiv();">Siguiente reto</button>
+
+        <div style="display:none;" id="realLink">
+            Que nunca te enseño a no presionar links randoms de internet?? 
+            </br>
+            Muajajajaja
+            <a target="_blank" href="">Siguiente reto de verdad</a>
+        </div>
+
+    </div>
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const images = [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Vulpes_vulpes_ssp_fulvus.jpg/1200px-Vulpes_vulpes_ssp_fulvus.jpg',
+            'https://www.dewildliferescue.com/wp-content/uploads/2022/12/RedFox.StephanieFaustPhotography.jpeg',
+            'https://www.welcomewildlife.com/wp-content/uploads/2019/01/Red-fox-300-0-%C2%A9-Stanislav-Duben-Shutterstock-scaled-e1679541763238.jpg',
+            'https://cdn.pixabay.com/photo/2024/02/08/14/11/ai-generated-8561168_640.jpg',
+            'https://cdn.pixabay.com/photo/2023/10/16/10/51/fox-8318961_1280.png',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWiOdOKC6w0pEKVKawA1y2VBMftIQffeuVGw&s',
+            'https://images.unsplash.com/photo-1603169812512-d6560fd13fa2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fHw%3D',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlESymjjbSIS-dhV1RWLFjIpKhpnZX-qAcqw&s',
+            'https://i.natgeofe.com/k/6496b566-0510-4e92-84e8-7a0cf04aa505/red-fox-portrait_4x3.jpg',
+            'https://static1.squarespace.com/static/569ec99b841abaccb7c7e74c/56ce9522b09f953e4e7b3dd7/64af131baa980a3163c7f839/1692111972669/Red+Fox_Ray+Hennessy_2017-11-20.jpg?format=1500w'
+        ];
+        let rightCount = 0;
+        let cardsArray = [...images, ...images]; // Duplicar las imágenes para tener pares
+        cardsArray = cardsArray.sort(() => 0.5 - Math.random()); // Mezclar las tarjetas
+
+        const grid = document.getElementById('grid');
+        let firstCard = null;
+        let secondCard = null;
+        let lockBoard = false;
+
+        // Crear las tarjetas
+        cardsArray.forEach(image => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `<img src="${image}" alt="memorama">`;
+            grid.appendChild(card);
+
+            card.addEventListener('click', () => {
+                if (lockBoard || card === firstCard) return; // Prevenir más clicks
+                card.classList.add('flipped');
+
+                if (!firstCard) {
+                    firstCard = card;
+                    return;
+                }
+
+                secondCard = card;
+                checkForMatch();
+            });
+        });
+
+        function checkForMatch() {
+            const isMatch = firstCard.innerHTML === secondCard.innerHTML;
+
+            if (isMatch) {
+                rightCount++;
+                if(rightCount == 10)
+                    document.getElementById('solution').style.display = ''
+
+                disableCards();
+            } else {
+                unflipCards();
+            }
+        }
+
+        function disableCards() {
+            firstCard.removeEventListener('click', () => {});
+            secondCard.removeEventListener('click', () => {});
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                resetBoard();
+            }, 1000);
+        }
+
+        function resetBoard() {
+            [firstCard, secondCard] = [null, null];
+            lockBoard = false;
+        }
+
+        function showDiv(){
+            document.getElementById('realLink').style.display = ''
+        }
+    </script>
+
+</body>
+</html>
